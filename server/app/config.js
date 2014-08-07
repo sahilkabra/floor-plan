@@ -5,7 +5,10 @@
  * Stores any env configuration that is required.
  * The app will get all properties from this object
  */
+var messenger = require('messenger');
+
 var config = module.exports;
+config.appName = 'floor-plan';
 
 config.express = {
         "port": process.env.PORT || 11001
@@ -29,3 +32,7 @@ config.pid = process.pid;
 config.get = function(key) {
         return process[key]
 };
+
+process.once('SIGINT', function() {
+        messenger.emit(config.appName + '.exit');
+});

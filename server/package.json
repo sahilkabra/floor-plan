@@ -15,6 +15,6 @@
   },
   "scripts": {
     "start": "app/app.js",
-    "test": "test/test.js"
+    "test": "node_modules/mocha/bin/mocha --reporter dot test"
   }
 }

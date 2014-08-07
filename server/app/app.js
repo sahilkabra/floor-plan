@@ -13,7 +13,12 @@ var messenger = require('messenger');
 app.use(morgan('short'));
 app.use(router);
 //app.use(error);
-messenger.on('plan.dbConnected', function() {
+messenger.on(config.appName + '.dbConnected', function() {
         app.listen(config.express.port);
         console.log('Service (%d) started on port %d', config.pid, config.express.port);
+});
+
+messenger.once(config.appName + '.exit', function() {
+        console.log('Bye');
+        process.nextTick(function() {process.exit()});
 });
