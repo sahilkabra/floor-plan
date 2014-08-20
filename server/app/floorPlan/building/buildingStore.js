@@ -5,8 +5,10 @@
  */
 var buildingModel = require('./buildingModel');
 
-/** Get a list of buildings by criteria */
-exports.get = function(criteria) {
-        if (criteria)   return buildingModel.getByCriteria(criteria);
-        return buildingModel.getAll();
+var buildingStore = module.exports;
+
+/** Returns a Promise that will fetch a list of buildings by the given criteria */
+buildingStore.get = function(criteria) {
+		if (criteria)	return buildingModel.getByCriteria(criteria);
+		return buildingModel.getAll();
 };
